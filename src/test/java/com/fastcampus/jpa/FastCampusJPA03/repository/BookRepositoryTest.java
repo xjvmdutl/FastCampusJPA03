@@ -1,0 +1,22 @@
+package com.fastcampus.jpa.FastCampusJPA03.repository;
+
+import com.fastcampus.jpa.FastCampusJPA03.domain.Book;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class BookRepositoryTest {
+    @Autowired
+    private BookRepository bookRepository;
+
+    @Test
+    public void bookTest(){
+        Book book = new Book();
+        book.setName("JPA 초격차 패키지");
+        book.setAuthor("페스트캠퍼스");
+
+        bookRepository.save(book);
+        System.out.println(bookRepository.findAll());
+    }
+}
