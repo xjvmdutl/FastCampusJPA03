@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @EntityListeners(value = { UserEntityListener.class})
 @ToString(callSuper = true)//toString 재정의
 @EqualsAndHashCode(callSuper = true)
-public class User extends BaseEntity implements Auditable {
+public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//순차적 증가
     private Long id;

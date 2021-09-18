@@ -14,7 +14,8 @@ public class BookRepositoryTest {
     public void bookTest(){
         Book book = new Book();
         book.setName("JPA 초격차 패키지");
-        book.setAuthor("페스트캠퍼스");
+        book.setAuthorId(1L);
+        book.setPublisherId(1L);
 
         bookRepository.save(book);
         System.out.println(bookRepository.findAll());

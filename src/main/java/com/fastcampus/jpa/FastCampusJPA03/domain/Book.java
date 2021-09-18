@@ -18,33 +18,33 @@ import java.time.LocalDateTime;
 @ToString(callSuper = true)//toString 재정의
 @EqualsAndHashCode(callSuper = true)
 //@EntityListeners(value = AuditingEntityListener.class)
-public class Book extends BaseEntity implements Auditable {
+public class Book extends BaseEntity {
     @Id
     @GeneratedValue
     private Long id;
 
     private String name;
 
-    private String author;
+    private String category;
 
+    private Long authorId;
+
+    public Long publisherId;
     /*
         @CreatedDate
         private LocalDateTime createAt;
-
         @LastModifiedDate
         private LocalDateTime updateAt;
-     */
+    */
     /*
-    @PrePersist
-    public void prePersist(){
-        this.createAt = LocalDateTime.now();
-        this.updateAt = LocalDateTime.now();
-    }
-    @PreUpdate
-    public void PreUpdate(){
-        this.updateAt = LocalDateTime.now();
-    }
-
-
-     */
+        @PrePersist
+        public void prePersist(){
+            this.createAt = LocalDateTime.now();
+            this.updateAt = LocalDateTime.now();
+        }
+        @PreUpdate
+        public void PreUpdate(){
+            this.updateAt = LocalDateTime.now();
+        }
+    */
 }
