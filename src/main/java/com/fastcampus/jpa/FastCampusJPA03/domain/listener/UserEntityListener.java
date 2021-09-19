@@ -7,6 +7,8 @@ import com.fastcampus.jpa.FastCampusJPA03.support.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.PostPersist;
+import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 @Component
@@ -14,8 +16,8 @@ public class UserEntityListener {
     //@Autowired
     //private UserHistoryRepository userHistoryRepository;
 
-    @PreUpdate
-    @PrePersist
+    @PostPersist
+    @PostUpdate
     public void prePersistAndPreUpdate(Object o){
         //에러 발생
         //why? Spring EntityListener 같은경우 Spring bean을 가지고 올수가 없다.

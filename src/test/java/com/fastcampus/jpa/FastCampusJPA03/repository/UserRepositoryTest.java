@@ -2,6 +2,7 @@ package com.fastcampus.jpa.FastCampusJPA03.repository;
 
 import com.fastcampus.jpa.FastCampusJPA03.domain.Gender;
 import com.fastcampus.jpa.FastCampusJPA03.domain.User;
+import com.fastcampus.jpa.FastCampusJPA03.domain.UserHistory;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Sort;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootTest
 class UserRepositoryTest {
@@ -142,7 +144,9 @@ class UserRepositoryTest {
         userRepository.save(user);
 
         System.out.println("to-be : " + userRepository.findAll().get(0));
+
     }
+
 
 
 }

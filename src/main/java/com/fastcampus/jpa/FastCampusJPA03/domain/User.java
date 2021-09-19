@@ -9,6 +9,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,7 +24,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 public class User extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//순차적 증가
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
@@ -32,6 +34,15 @@ public class User extends BaseEntity {
 
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id",insertable = false,updatable = false)//엔티티가 어떤컬럼으로 조인될지 지정해주는 어노테이션//UserEntity에서는 UserId값을 수정 생성 못하도록 한다
+    private List<UserHistory> userHistories = new ArrayList<>();
+    //복수형으로 쓰는것이 트렌드
+    //JPA에서는 해당값이 존재하지 않으면 빈리스트를 넣어 줘서 문제가 없지만,
+    //이벤트 리스너에서 해당 값을 넣어줄때 값이 비어 있어서
+    //문제가 발생할수도 있기 때문에 생성을 해주는것이 좋다
+
 
     //BaseEntity에서 createAt,updateAt을 상속해주기 때문에 주석처리해도 동작한다.
 

@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 //@EntityListeners(value = AuditingEntityListener.class)
 public class Book extends BaseEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -29,7 +29,12 @@ public class Book extends BaseEntity {
 
     private Long authorId;
 
-    public Long publisherId;
+    private Long publisherId;
+
+    @OneToOne(mappedBy = "book")//소유하지 않는 Entity에 설정하는 옵션//연관키를 해당 테이블에서 제거
+    @ToString.Exclude//엔티티 relation을 연관지을 경우 toString 메소드가 순환참조가 걸려 오류가 발생
+    private BookReviewInfo bookReviewInfo;
+
     /*
         @CreatedDate
         private LocalDateTime createAt;
