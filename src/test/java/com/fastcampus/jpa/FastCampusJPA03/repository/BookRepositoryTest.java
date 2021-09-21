@@ -10,14 +10,18 @@ public class BookRepositoryTest {
     @Autowired
     private BookRepository bookRepository;
 
+
+
     @Test
     public void bookTest(){
         Book book = new Book();
         book.setName("JPA 초격차 패키지");
         book.setAuthorId(1L);
-        book.setPublisherId(1L);
+        //book.setPublisherId(1L);
 
         bookRepository.save(book);
         System.out.println(bookRepository.findAll());
     }
+
+
 }

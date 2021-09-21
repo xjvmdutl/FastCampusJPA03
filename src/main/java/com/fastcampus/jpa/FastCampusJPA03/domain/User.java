@@ -37,11 +37,18 @@ public class User extends BaseEntity {
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id",insertable = false,updatable = false)//엔티티가 어떤컬럼으로 조인될지 지정해주는 어노테이션//UserEntity에서는 UserId값을 수정 생성 못하도록 한다
-    private List<UserHistory> userHistories = new ArrayList<>();
+    @ToString.Exclude
+    private List<UserHistory> userHistories = new ArrayList<>();//1,2,3,4,5,6 값을 배열 데이터
     //복수형으로 쓰는것이 트렌드
     //JPA에서는 해당값이 존재하지 않으면 빈리스트를 넣어 줘서 문제가 없지만,
     //이벤트 리스너에서 해당 값을 넣어줄때 값이 비어 있어서
     //문제가 발생할수도 있기 때문에 생성을 해주는것이 좋다
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private List<Review> reviews = new ArrayList<>();
+
 
 
     //BaseEntity에서 createAt,updateAt을 상속해주기 때문에 주석처리해도 동작한다.
