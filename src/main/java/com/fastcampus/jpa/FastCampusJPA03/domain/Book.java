@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -43,6 +44,25 @@ public class Book extends BaseEntity {
     @ManyToOne
     @ToString.Exclude
     private Publisher publisher;
+
+    @OneToMany
+    @JoinColumn(name = "book_id")
+    @ToString.Exclude
+    private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
+
+    public void addBookAndAuthor(BookAndAuthor... bookAndAuthor){
+        Collections.addAll(this.bookAndAuthors,bookAndAuthor);
+    }
+
+    /*
+    @ManyToMany
+    @ToString.Exclude
+    private List<Author> authors = new ArrayList<>();
+    public void addAuthor(Author... author){
+        Collections.addAll(this.authors,author);
+    }
+
+    */
 
 
     /*
